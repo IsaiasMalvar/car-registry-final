@@ -137,6 +137,86 @@ These are set in `docker-compose.yml` for the `db` service:
 | `PUT`  | `/cars/{id}` | Update a car by ID. |
 | `DELETE` | `/cars/{id}` | Delete a car by ID. |
 
+Here's a section for your README that explains the process for creating a user, logging in, and using the bearer token for car management endpoints:
+
+
+### User Registration, Login, and Accessing Car Management Endpoints
+
+To interact with the car management API, you must first **register a user** and **log in** to obtain a **Bearer token** for authentication. This token is required to access the protected car management endpoints.
+
+#### 1. **User Registration (Sign Up)**
+
+To create a new user, you need to send a **POST request** to the `/signup` endpoint with the following fields in the **JSON body**:
+
+- **name**: The name of the user (string)
+- **mail**: The email address of the user (string)
+- **password**: The password for the user (string)
+
+**Example Request**:
+```bash
+POST http://localhost:8080/signup
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "mail": "john.doe@example.com",
+  "password": "securepassword123"
+}
+```
+
+**Response**:
+- Upon successful registration, the response will confirm that the user was created.
+- Example Response:
+  ```json
+  {
+    "message": "jwtlikestring"
+  }
+  ```
+
+#### 2. **User Login (Authentication)**
+
+After registering, you can log in to the application by sending a **POST request** to the `/login` endpoint. You will need to include the **email** and **password** in the **JSON body**.
+
+**Example Request**:
+```bash
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "mail": "john.doe@example.com",
+  "password": "securepassword123"
+}
+```
+
+**Response**:
+- Upon successful login, the response will include a **JWT Bearer token** that you will need for authentication in subsequent requests.
+- Example Response:
+  ```json
+  {
+    "token": "your-jwt-bearer-token"
+  }
+  ```
+
+#### 3. **Accessing Protected Car Management Endpoints**
+
+Once you have obtained the **JWT Bearer token** from the login response, you can use it to authenticate requests to protected endpoints (like car management endpoints).
+
+To use the **Bearer token**, you must include it in the **Authorization header** of your requests as follows:
+
+**Example Request to Manage Cars**:
+```bash
+GET http://localhost:8080/cars
+Authorization: Bearer your-jwt-bearer-token
+```
+
+- Replace `your-jwt-bearer-token` with the actual token obtained from the login step.
+
+The token will authenticate your request and grant access to the car management endpoints.
+
+---
+
+This process ensures that only authenticated users can interact with car-related data, and the token will be required for every request that interacts with protected resources.
+
 ---
 
 ## Troubleshooting
