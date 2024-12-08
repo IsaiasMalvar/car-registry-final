@@ -1,6 +1,6 @@
 # Spring Boot Application - Database Demo
 
-This is a **Spring Boot Application** configured to connect to a MySQL database using **Docker Compose**. The application is containerized, leveraging Maven for dependency management and packaging.
+This is a **Spring Boot Application** configured to connect to a MySQL database using **Docker Compose**. The application is containerized, leveraging Maven for dependency management and packaging. It implements Spring Security and Spring MVC features alongside Swagger/OpenApi annotations, effectively making it a simple a CRUD REST API for the management of a car registry.
 
 ---
 
