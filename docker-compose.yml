@@ -20,7 +20,7 @@ services:
     networks:
       - springapimysql-net
     environment:
-      MYSQL_DATABASE: basics
+      MYSQL_DATABASE: cregistry
       MYSQL_USER: test
       MYSQL_PASSWORD: pw
       MYSQL_ROOT_PASSWORD: pw
